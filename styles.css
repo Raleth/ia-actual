@@ -1,0 +1,202 @@
+        @font-face {
+            font-family: 'MiFuente';
+            src: url('IndieFlower-Regular.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        * {
+            font-family: 'MiFuente', sans-serif;
+        }
+
+        /* 1. Menu principal en fila y centrado */
+        nav .menu {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        /* 2. Cada <li> como contenedor relativo */
+        nav .menu>li {
+            position: relative;
+        }
+
+        nav .menu .submenu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            list-style: none;
+            margin: 0;
+            padding: 8px 0;
+            background-color: var(--submenu-bg);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+            z-index: 10;
+        }
+
+        /* 4. Mostrar el submenú al pasar el ratón */
+        nav .menu>li:hover .submenu {
+            display: block;
+        }
+
+        /* Estilo de los enlaces */
+        nav .menu a {
+            display: block;
+            padding: 6px 12px;
+            text-decoration: none;
+            white-space: nowrap;
+            /* evita saltos de línea */
+        }
+
+        /* Opcional: separar ítems de submenú */
+        nav .submenu li+li {
+            margin-top: 4px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .contenido {
+            text-align: center;
+            margin: 20px;
+            padding: 15px;
+            border: 1px solid #ccc;
+            background-color: #f9f9f9;
+            transition: opacity 0.3s ease-in-out;
+            /* <- Aquí se define el efecto */
+            opacity: 1;
+            /* Valor inicial */
+        }
+
+        /* Variables de tema claro (por defecto) */
+        :root {
+            --bg-color: #f9f9f9;
+            --text-color: #222;
+            --nav-bg: white;
+            --nav-text: #222;
+            --content-bg: #f9f9f9;
+            --content-border: #ccc;
+            --submenu-bg: whitesmoke;
+            --submenu-hover-bg: rgba(0, 0, 0, 0.05);
+            --img-width: 600px;
+            --img-height: px;
+        }
+
+        /* Variables de tema oscuro */
+        body.dark-mode {
+            --bg-color: #121212;
+            --text-color: #eee;
+            --nav-bg: #1f1f1f;
+            --nav-text: #eee;
+            --content-bg: #1f1f1f;
+            --content-border: #333;
+            --submenu-bg: #2a2a2a;
+            --submenu-hover-bg: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Aplicación de variables */
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            transition: background-color 0.4s ease, color 0.4s ease;
+        }
+
+        nav .menu {
+            background-color: var(--nav-bg);
+            /* si quieres que el nav cambie de fondo */
+        }
+
+        nav .menu a {
+            color: var(--nav-text);
+            transition: color 0.4s ease;
+        }
+
+        .contenido {
+            background-color: var(--content-bg);
+            border: 1px solid var(--content-border);
+            transition: background-color 0.4s ease, border-color 0.4s ease;
+        }
+
+        /* Estilo del botón */
+        #btn-modo-oscuro {
+            margin-left: 1rem;
+            padding: 0.3rem 0.6rem;
+            font-size: 1.2rem;
+            cursor: pointer;
+            background: none;
+            border: 2px solid var(--text-color);
+            border-radius: 0.3rem;
+            color: var(--text-color);
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+        }
+
+        #btn-modo-oscuro:hover {
+            background-color: var(--text-color);
+            color: var(--bg-color);
+        }
+
+        header {
+            display: flex;
+            justify-content: center;
+            /* centra horizontalmente */
+            align-items: center;
+            /* centra verticalmente */
+            gap: 1rem;
+            /* separa un poco el h1 del botón */
+        }
+
+        /* Asegura transición suave para color y fondo */
+        nav .menu .submenu a {
+            transition: background-color 0.2s ease, filter 0.2s ease;
+        }
+
+        /* Al pasar el ratón, se ilumina el texto y cambia el fondo */
+        nav .menu .submenu a:hover {
+            background-color: var(--submenu-hover-bg);
+            filter: brightness(1.1);
+        }
+
+        /* Contenedor de cada subtema: imagen + texto */
+        .subtema-container {
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        /* Imagen del subtema */
+        .subtema-img {
+            width: var(--img-width);
+            height: var(--img-height);
+            border-radius: 0.5rem;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+
+        /* Texto del subtema */
+        .subtema-texto {
+            flex: 1;
+            /* ocupa todo el espacio restante */
+        }
+
+        /* Responsive: en pantallas pequeñas apila verticalmente */
+        @media (max-width: 600px) {
+            .subtema-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .subtema-img {
+                width: var(--img-width);
+                height: var(--img-height);
+                border-radius: 0.5rem;
+                object-fit: cover;
+                flex-shrink: 0;
+            }
+        }
